@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Latin Modern Roman}
+\fi
+\usepackage[spanish]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+
+\title{ Artículo de investigación }
+\author{ Tu nombre }
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Describe aquí la pregunta, el enfoque y el resultado principal.
+\end{abstract}
+\input{sections/introduction}
+\input{sections/conclusion}
+\printbibliography
+\end{document}

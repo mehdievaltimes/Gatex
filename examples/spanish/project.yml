@@ -1,0 +1,5 @@
+name: spanish
+type: paper
+language: es
+engine: pdflatex
+source: paper.tex

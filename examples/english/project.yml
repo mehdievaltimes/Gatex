@@ -1,0 +1,5 @@
+name: english
+type: paper
+language: en
+engine: pdflatex
+source: paper.tex

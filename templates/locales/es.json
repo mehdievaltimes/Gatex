@@ -1,0 +1,13 @@
+{
+  "babel": "spanish",
+  "paper_title": "Artículo de investigación",
+  "notes_title": "Notas de lectura",
+  "author": "Tu nombre",
+  "abstract_text": "Describe aquí la pregunta, el enfoque y el resultado principal.",
+  "introduction_heading": "Introducción",
+  "introduction_text": "Presenta el problema y explica la pregunta de investigación. Aquí aparece una referencia al sistema de composición TeX.",
+  "conclusion_heading": "Conclusión",
+  "conclusion_text": "Resume los resultados y sus limitaciones.",
+  "notes_heading": "Notas",
+  "notes_text": "Anota observaciones y preguntas. Aquí aparece una referencia al sistema de composición TeX."
+}

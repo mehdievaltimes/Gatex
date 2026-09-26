@@ -1,0 +1,24 @@
+{
+  "name": "LaTeX writing workspace",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "init": true,
+  "postCreateCommand": [
+    "python3",
+    "scripts/lwf.py",
+    "init-git",
+    ".",
+    "--trust-workspace"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop"
+      ]
+    }
+  }
+}

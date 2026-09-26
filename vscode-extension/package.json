@@ -1,0 +1,163 @@
+{
+  "name": "gatex",
+  "displayName": "Gatex",
+  "description": "Keep LaTeX source and its live PDF together, with SyncTeX navigation and VS Code's Git interface.",
+  "version": "0.1.2",
+  "publisher": "gatex-local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["latex", "pdf", "writing", "synctex", "git"],
+  "main": "./extension.js",
+  "extensionKind": ["workspace"],
+  "extensionDependencies": ["James-Yu.latex-workshop"],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:gatex.home",
+    "onView:gatex.files",
+    "onCommand:gatex.newProject",
+    "workspaceContains:**/project.yml",
+    "onCommand:gatex.openWorkspace",
+    "onCommand:gatex.togglePreview",
+    "onCommand:gatex.build",
+    "onCommand:gatex.openSourceControl"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Gatex runs the project's build helper and TeX tools. Trust the project to enable its writing workspace."
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "Gatex requires a local or remote filesystem and local build processes."
+    }
+  },
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [{ "id": "gatex", "title": "Gatex", "icon": "media/gatex.svg" }]
+    },
+    "views": {
+      "gatex": [
+        { "type": "webview", "id": "gatex.home", "name": "Writing", "contextualTitle": "Gatex" },
+        { "id": "gatex.files", "name": "Writing Files", "contextualTitle": "Gatex", "when": "gatex.hasProject" }
+      ]
+    },
+    "viewsWelcome": [
+      { "view": "gatex.home", "contents": "Trust this folder to start writing with Gatex.\n[Manage Workspace Trust](command:workbench.trust.manage)", "when": "!isWorkspaceTrusted" }
+    ],
+    "commands": [
+      {
+        "command": "gatex.startContainer", "title": "Start Writing in Container", "category": "Gatex",
+        "enablement": "gatex.hasProject && isWorkspaceTrusted"
+      },
+      {
+        "command": "gatex.showHome", "title": "Show Writing Controls", "category": "Gatex", "icon": "$(book)"
+      },
+      {
+        "command": "gatex.openFile", "title": "Open File", "category": "Gatex"
+      },
+      {
+        "command": "gatex.newFile", "title": "New File", "category": "Gatex", "icon": "$(new-file)",
+        "enablement": "gatex.hasProject && isWorkspaceTrusted"
+      },
+      {
+        "command": "gatex.newFolder", "title": "New Folder", "category": "Gatex", "icon": "$(new-folder)",
+        "enablement": "gatex.hasProject && isWorkspaceTrusted"
+      },
+      {
+        "command": "gatex.importFiles", "title": "Import Files", "category": "Gatex", "icon": "$(cloud-upload)",
+        "enablement": "gatex.hasProject && isWorkspaceTrusted"
+      },
+      {
+        "command": "gatex.revealFile", "title": "Reveal in Explorer", "category": "Gatex"
+      },
+      {
+        "command": "gatex.newProject",
+        "title": "New Project",
+        "category": "Gatex",
+        "icon": "$(new-file)",
+        "enablement": "isWorkspaceTrusted"
+      },
+      {
+        "command": "gatex.openWorkspace",
+        "title": "Open Writing Workspace",
+        "category": "Gatex",
+        "icon": "$(open-preview)",
+        "enablement": "isWorkspaceTrusted && workspaceFolderCount != 0"
+      },
+      {
+        "command": "gatex.togglePreview",
+        "title": "Toggle Persistent PDF Preview",
+        "category": "Gatex",
+        "enablement": "isWorkspaceTrusted && workspaceFolderCount != 0"
+      },
+      {
+        "command": "gatex.build",
+        "title": "Build Project",
+        "category": "Gatex",
+        "icon": "$(play)",
+        "enablement": "isWorkspaceTrusted && workspaceFolderCount != 0"
+      },
+      {
+        "command": "gatex.openSourceControl",
+        "title": "Open Source Control",
+        "category": "Gatex",
+        "icon": "$(source-control)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "gatex.openFile", "when": "false" },
+        { "command": "gatex.revealFile", "when": "false" }
+      ],
+      "view/title": [
+        { "command": "gatex.newFile", "when": "view == gatex.files", "group": "navigation@1" },
+        { "command": "gatex.newFolder", "when": "view == gatex.files", "group": "navigation@2" },
+        { "command": "gatex.importFiles", "when": "view == gatex.files", "group": "navigation@3" }
+      ],
+      "view/item/context": [
+        { "command": "gatex.newFile", "when": "view == gatex.files && viewItem == gatex.folder", "group": "1_create@1" },
+        { "command": "gatex.newFolder", "when": "view == gatex.files && viewItem == gatex.folder", "group": "1_create@2" },
+        { "command": "gatex.importFiles", "when": "view == gatex.files && viewItem == gatex.folder", "group": "1_create@3" },
+        { "command": "gatex.revealFile", "when": "view == gatex.files", "group": "2_manage" }
+      ],
+      "editor/title": [
+        {
+          "command": "gatex.build",
+          "when": "gatex.hasProject && resourceExtname == .tex && isWorkspaceTrusted",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gatex.openWorkspace",
+          "when": "gatex.hasProject && resourceExtname == .tex && isWorkspaceTrusted",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Gatex",
+      "properties": {
+        "gatex.autoOpenPreview": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Open the writing workspace automatically at startup and when switching to another Gatex project's LaTeX source."
+        },
+        "gatex.keepPreviewOpen": {
+          "type": "boolean",
+          "default": true,
+          "scope": "resource",
+          "description": "Reopen a closed PDF preview while the Gatex writing workspace is active. Use Gatex: Toggle Persistent PDF Preview to pause this behavior."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "package": "node ../scripts/package-extension.js"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "4.0.0"
+  }
+}

@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Latin Modern Roman}
+\fi
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+
+\title{  }
+\author{ Your Name }
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Describe the question, approach, and main result here. oh my the abstract but only the abstract is here
+\end{abstract}
+\input{sections/introduction}
+\input{sections/conclusion}
+\printbibliography
+\end{document}

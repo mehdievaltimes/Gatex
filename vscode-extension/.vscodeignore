@@ -1,0 +1,8 @@
+node_modules/**
+test/**
+tests/**
+**/*.test.js
+package-lock.json
+.vscodeignore
+*.vsix
+**/.DS_Store

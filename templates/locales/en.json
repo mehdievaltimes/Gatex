@@ -1,0 +1,13 @@
+{
+  "babel": "english",
+  "paper_title": "Research paper",
+  "notes_title": "Reading notes",
+  "author": "Your Name",
+  "abstract_text": "Describe the question, approach, and main result here.",
+  "introduction_heading": "Introduction",
+  "introduction_text": "Introduce the problem and motivate the research question. Here is an example reference to the TeX typesetting system.",
+  "conclusion_heading": "Conclusion",
+  "conclusion_text": "Summarize the findings and their limitations.",
+  "notes_heading": "Notes",
+  "notes_text": "Record observations and questions. Here is an example reference to the TeX typesetting system."
+}
