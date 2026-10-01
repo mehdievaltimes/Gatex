@@ -1,6 +1,6 @@
-# Gatex — LaTeX Writing Framework
+# Gatex
 
-Write LaTeX on the left and see the compiled PDF on the right. Click the **Gatex document icon** in VS Code's left activity bar to create a project, open its writing files, build the PDF, or review changes. Double-click PDF text to jump to its source. The framework includes English and Spanish paper and notes templates, a local Dev Container, and Git integration.
+Write LaTeX on the left and see the compiled PDF on the right.
 
 The default workflow runs TeX, Biber, Python, and Git inside a local container. VS Code supplies the editor, PDF viewer, and Git interface. Sources and history stay in the project folder on your computer. There is no account, online build service, custom editor, or proprietary document format. Projects also build with your own TeX installation and editor.
 
